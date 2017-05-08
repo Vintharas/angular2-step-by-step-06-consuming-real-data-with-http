@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../person';
+import { PeopleService } from "../people.service";
 
 @Component({
   selector: 'app-people-list',
@@ -14,14 +15,11 @@ import { Person } from '../person';
   styleUrls: ['./people-list.component.scss']
 })
 export class PeopleListComponent implements OnInit {
-    people: Person[] = [
-    {name: 'Luke Skywalker', height: 177, weight: 70},
-    {name: 'Darth Vader', height: 200, weight: 100},
-    {name: 'Han Solo', height: 185, weight: 85},
-  ];
+  people: Person[];
 
-
-  constructor() { }
+  constructor(private peopleService: PeopleService) { 
+    this.people = peopleService.getAll();
+  }
 
   ngOnInit() {
   }
