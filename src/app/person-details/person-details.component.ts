@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+
+import { PeopleService } from "../people.service";
 import { Person } from "../person";
 
 @Component({
@@ -14,10 +17,21 @@ import { Person } from "../person";
   `,
   styles: []
 })
-export class PersonDetailsComponent implements OnInit {
-  @Input() person: Person;
+export class PersonDetailsComponent implements OnInit, OnDestroy {
+  person: Person;
+  sub:any;
 
-  constructor() { }
-  ngOnInit() { }
+  constructor(private route:ActivatedRoute,
+              private peopleService:PeopleService) { }
 
+  ngOnInit() { 
+    this.sub = this.route.params.subscribe(params => {
+      let id = Number.parseInt(params['id']);
+      this.person = this.peopleService.get(id);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }
