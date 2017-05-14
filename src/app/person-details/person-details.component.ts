@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { PeopleService } from "../people.service";
 import { Person } from "../person";
@@ -14,6 +14,8 @@ import { Person } from "../person";
        {{person.name}} weights {{person.weight}} and is {{person.height}} tall.
     </p>
   </section>
+
+  <button (click)="gotoPeoplesList()">Back to peoples list</button>
   `,
   styles: []
 })
@@ -21,8 +23,9 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   person: Person;
   sub:any;
 
-  constructor(private route:ActivatedRoute,
-              private peopleService:PeopleService) { }
+  constructor(private route: ActivatedRoute,
+              private peopleService: PeopleService,
+              private router: Router) { }
 
   ngOnInit() { 
     this.sub = this.route.params.subscribe(params => {
@@ -31,7 +34,20 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
+  gotoPeoplesList(){
+    let link = ['/persons'];
+    this.router.navigate(link);
+  }
+
+  /* 
+  //alternatively use:
+  gotoPeoplesList(){
+      window.history.back();
+  }
+  */
+
 }
