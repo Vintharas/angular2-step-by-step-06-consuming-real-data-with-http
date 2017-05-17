@@ -1,0 +1,30 @@
+<section *ngIf="person">
+  <!-- description -->
+  <section>
+    <h2>You selected: {{person.name}}</h2>
+    <h3>Description</h3>
+    <p>
+      {{person.name}} weights {{person.weight}} and is {{person.height}} tall.
+    </p>
+  </section>
+
+  <!-- form -->
+  <section>
+    <form>
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" name="name" [(ngModel)]="person.name">
+      </div>
+      <div>
+        <label for="weight">Weight: </label>
+        <input type="number" name="weight" [(ngModel)]="person.weight">
+      </div>
+      <div>
+        <label for="height">Height: </label>
+        <input type="number" name="height" [(ngModel)]="person.height">
+      </div>
+    </form>
+  </section>
+
+  <button (click)="gotoPeoplesList()">Back to peoples list</button>
+<section>
