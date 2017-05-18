@@ -26,6 +26,14 @@
         <label for="height">Height: </label>
         <input type="number" name="height" [(ngModel)]="person.height">
       </div>
+      <div>
+        <label for="profession">Profession:</label>
+        <select name="profession" [(ngModel)]="person.profession">
+          <option *ngFor="let profession of professions" [value]="profession">{{profession}}</option>
+        </select>
+      </div>
+
+
       <button type="submit" [disabled]="!personForm.form.valid">Save</button>
     </form>
   </section>

@@ -10,6 +10,7 @@ import { Person } from "../person";
   styles: []
 })
 export class PersonDetailsComponent implements OnInit, OnDestroy {
+  professions: string[] = ['jedi', 'bounty hunter', 'princess', 'sith lord'];
   person: Person;
   sub:any;
 
@@ -34,7 +35,8 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   savePersonDetails(){
-      alert(`saved!!! ${JSON.stringify(this.person)}`);
+      console.log(`saved!!! ${JSON.stringify(this.person)}`);
+      this.peopleService.save(this.person);
   }
 
   /* 
