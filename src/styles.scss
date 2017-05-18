@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+// These styles are HEAVILY, HEAVILY inspired (STOLEN!!) 
+// from the Angular 2 docs
+
+// valid and required show green
+input.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+// invalid
+input.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+// error message
+.error{
+  padding: 12px;
+  background-color: rgba(255, 0, 0, 0.2);
+  color: red;
+}
+
+
