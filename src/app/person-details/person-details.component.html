@@ -20,7 +20,16 @@
       </div>
       <div>
         <label for="weight">Weight: </label>
-        <input type="number" name="weight" [(ngModel)]="person.weight">
+        <input type="number" name="weight" [(ngModel)]="person.weight" min=0 max=350 #weight="ngModel">
+        <div *ngIf="weight.errors && (weight.dirty || weight.touched)"
+            class="error">
+            <p [hidden]="!weight.errors.min">
+              Weight must be bigger than a feather's. {{weight.value}} is way too low.
+            </p>
+            <p [hidden]="!weight.errors.max">
+              Weight can't be bigger than a Rancor's. {{weight.value}} is too high
+            </p>
+        </div>
       </div>
       <div>
         <label for="height">Height: </label>
