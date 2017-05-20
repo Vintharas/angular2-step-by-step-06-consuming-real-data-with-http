@@ -21,7 +21,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() { 
     this.sub = this.route.params.subscribe(params => {
       let id = Number.parseInt(params['id']);
-      this.person = this.peopleService.get(id);
+      console.log('getting person with id: ', id);
+      this.peopleService
+        .get(id)
+        .subscribe(p => this.person = p);
     });
   }
 
@@ -35,8 +38,9 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   savePersonDetails(){
-      console.log(`saved!!! ${JSON.stringify(this.person)}`);
-      this.peopleService.save(this.person);
+      this.peopleService
+          .save(this.person)
+          .subscribe(r => console.log(`saved!!! ${JSON.stringify(this.person)}`));
   }
 
   /* 
